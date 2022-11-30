@@ -1,0 +1,11 @@
+.image-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 30%;
+    // aspect-ratio: 1/1;
+
+    &.fade {
+        opacity: 0;
+        transition: opacity 1s;
+    }
+}
