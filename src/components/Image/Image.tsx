@@ -1,22 +1,32 @@
 import "./Image.scss";
-import { ImageInterface } from "../../interfaces/ImageInterface"
-import { useState } from "react";
+import { ImageInterface } from "../../interfaces/ImageInterface";
+import useImageSelectionStore from "../../stores/ImageSelectionStore";
+import { useEffect, useState } from "react";
 
-export default function Image({ id, isLoading, imgDetails, onImgClick }: { id: string, isLoading: boolean, imgDetails: ImageInterface, onImgClick: Function }) {
-    const [isVisible, setIsVisible] = useState(true);
-    
-    const childOnImgClick = (e: any) => {
-        onImgClick(id, 2);
+export default function Image({ id, optionDetails, onImageClick }: { id: string, optionDetails: ImageInterface, onImageClick: Function }) {
 
-        // Make image fade out
-        setIsVisible(false);
+    // Keeps track of when the entire comparer is loading to prevent either buttons from clicking.
+    // Variable selected is used to track internally which image should be showing the loading transition
+    const isLoading = useImageSelectionStore(state => state.isLoading);
+    const [selected, setSelected] = useState(false);
 
-        setTimeout(() => {
-            setIsVisible(true)
-        }, 1000)
+    useEffect(() => {
+        if (isLoading === false) setSelected(false);
+    }, [isLoading])
+
+    const getClassName = (): string => {
+        return `image-container ${ selected ? "fade" : "" }`;
+    }
+
+    const onImageClickChild = () => {
+        // Requires an additional check here as main app is unaware of the setselected
+        if (!isLoading) {
+            onImageClick(id, optionDetails);
+            setSelected(true);
+        }
     }
 
     return (
-        <img className={`image-container ${isVisible ? "" : "fade"}`} src={imgDetails.path} alt={imgDetails.alt} onClick={(e) => { !isLoading ? childOnImgClick(e) : null}}/>
+        <img className={getClassName()} src={optionDetails.path} alt={optionDetails.alt} onClick={onImageClickChild}/>
     )
 }

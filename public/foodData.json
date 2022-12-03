@@ -1,0 +1,17 @@
+[
+    {
+        "name": "pizza",
+        "path": "./src/assets/pizza.jpg",
+        "alt": "pizza"
+    },
+    {
+        "name": "burger",
+        "path": "./src/assets/burger.jpg",
+        "alt": "burger"
+    },
+    {
+        "name": "nasi-lemak",
+        "path": "./src/assets/nasi-lemak.jpg",
+        "alt": "nasi-lemak"
+    }
+]
