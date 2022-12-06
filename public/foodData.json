@@ -13,5 +13,15 @@
         "name": "nasi-lemak",
         "path": "./src/assets/nasi-lemak.jpg",
         "alt": "nasi-lemak"
+    },
+    {
+        "name": "pho",
+        "path": "./src/assets/pho.jpg",
+        "alt": "pho"
+    },
+    {
+        "name": "ribs",
+        "path": "./src/assets/ribs.jpg",
+        "alt": "ribs"
     }
 ]

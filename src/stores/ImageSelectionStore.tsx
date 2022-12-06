@@ -38,12 +38,14 @@ const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
     rightOption: defaultOption,
     selectLeftOption: () => {
         set((state) => ({
-            leftOption: selectRandomFromArr(state.optionPool)
+            // Can't just use the option pool as there is a chance left option === right option. Must use a new version of option pool without the right option
+            leftOption: selectRandomFromArr([...popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, state.rightOption))])
         }))
     },
     selectRightOption: () => {
         set((state) => ({
-            rightOption: selectRandomFromArr(state.optionPool)
+            // Can't just use the option pool as there is a chance left option === right option. Must use a new version of option pool without the left option
+            rightOption: selectRandomFromArr([...popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, state.leftOption))])
         }))
     },
 

@@ -11,6 +11,8 @@ function App() {
   const isLoading = useImageSelectionStore(state => state.isLoading);
   const setIsLoading = useImageSelectionStore(state => state.setIsLoading);
 
+  const leftOption = useImageSelectionStore(state => state.leftOption);
+  const rightOption = useImageSelectionStore(state => state.rightOption);  
   const selectLeftOption = useImageSelectionStore(state => state.selectLeftOption);
   const selectRightOption = useImageSelectionStore(state => state.selectRightOption);
 
@@ -56,7 +58,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>What do you prefer?</h1>
+      <h1 className="item-comparer-title">{leftOption.name + " vs " + rightOption.name}</h1>
+      <ItemComparer onComparerClick={!isLoading ? onComparerClick : () => {}}/>
+      <Toolbar />
       <ul>
       {
         optionPool.map(img => {
@@ -66,9 +70,6 @@ function App() {
         })
       }
       </ul>
-
-      <ItemComparer onComparerClick={!isLoading ? onComparerClick : () => {}}/>
-      <Toolbar />
     </div>
   )
 }
