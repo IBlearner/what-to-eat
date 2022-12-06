@@ -3,7 +3,6 @@ import "./App.scss";
 import ItemComparer from "./components/ItemComparer/ItemComparer";
 import Toolbar from "./components/Toolbar/Toolbar";
 import { ImageInterface } from "./interfaces/ImageInterface";
-import { selectRandomFromArr } from "./helpers/helpers";
 import useImageSelectionStore from "./stores/ImageSelectionStore";
 
 function App() {
@@ -23,14 +22,18 @@ function App() {
     fetchData();
   }, [])
 
+  useEffect(() => {
+    console.log(optionPool);
+  }, [optionPool])
+
   const fetchData = async () => {
     const response = await fetch("./foodData.json");
     const res = await response.json();
     initPool(res);
   }
 
+
   const onComparerClick = (id: "left" | "right", selected: ImageInterface) => {
-    console.log(id)
     setIsLoading(true)
 
     setTimeout(() => {
@@ -46,6 +49,7 @@ function App() {
         default:
           break;
       }
+
       setIsLoading(false);
     }, 1000);
   }
@@ -53,11 +57,16 @@ function App() {
   return (
     <div className="App">
       <h1>What do you prefer?</h1>
+      <ul>
       {
         optionPool.map(img => {
-          return <img src={img.path} alt={img.alt}/>
+          return (
+            <li>{img.name}</li>
+          )
         })
       }
+      </ul>
+
       <ItemComparer onComparerClick={!isLoading ? onComparerClick : () => {}}/>
       <Toolbar />
     </div>

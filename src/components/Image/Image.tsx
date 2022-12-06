@@ -8,7 +8,7 @@ export default function Image({ id, optionDetails, onImageClick }: { id: string,
     // Keeps track of when the entire comparer is loading to prevent either buttons from clicking.
     // Variable selected is used to track internally which image should be showing the loading transition
     const isLoading = useImageSelectionStore(state => state.isLoading);
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(false);  
 
     useEffect(() => {
         if (isLoading === false) setSelected(false);
@@ -27,6 +27,6 @@ export default function Image({ id, optionDetails, onImageClick }: { id: string,
     }
 
     return (
-        <img className={getClassName()} src={optionDetails.path} alt={optionDetails.alt} onClick={onImageClickChild}/>
+        <img className={getClassName()} src={optionDetails.path} alt={optionDetails.alt} onError={() => console.log("error")} onClick={onImageClickChild}/>
     )
 }

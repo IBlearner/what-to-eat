@@ -10,3 +10,12 @@ export function selectRandomFromArr(array: any[], currentlyChosen: number = -1):
         return array[randomIndex];
     }
 }
+
+export function popIndexFromArr(array: any[], index: number) {
+    try {
+        array.splice(index, (index >= 0) ? 1 : 0);        
+    } catch (error) {
+        console.log("Probably can't find the option in the option pool.")
+    }
+    return array;
+}
