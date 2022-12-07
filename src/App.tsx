@@ -7,10 +7,6 @@ import useImageSelectionStore from "./stores/ImageSelectionStore";
 
 function App() {
 
-  // Keeps track of when the user can interact with the options
-  const isLoading = useImageSelectionStore(state => state.isLoading);
-  const setIsLoading = useImageSelectionStore(state => state.setIsLoading);
-
   const leftOption = useImageSelectionStore(state => state.leftOption);
   const rightOption = useImageSelectionStore(state => state.rightOption);  
   const selectLeftOption = useImageSelectionStore(state => state.selectLeftOption);
@@ -20,12 +16,25 @@ function App() {
   const initPool = useImageSelectionStore(state => state.initPool);
   const decreasePool = useImageSelectionStore(state => state.decreasePool);
 
+  // Keeps track of when the user can interact with the options
+  const isLoading = useImageSelectionStore(state => state.isLoading);
+  const setIsLoading = useImageSelectionStore(state => state.setIsLoading);
+
+  // Keeps track of when the pool is depleted and the app to stop
+  const isFinished = useImageSelectionStore(state => state.isFinished);
+  const setIsFinished = useImageSelectionStore(state => state.setIsFinished);
+
   useEffect(() => {
     fetchData();
   }, [])
 
   useEffect(() => {
-    console.log(optionPool);
+    // Need logic to end the selection process when the pool hits 0
+    // Actually, when the pool hits 1 means there will be no more future options as this represents one of the current options
+    if (optionPool.length === 1) {
+      console.log("no more options");
+      setIsFinished();
+    }
   }, [optionPool])
 
   const fetchData = async () => {

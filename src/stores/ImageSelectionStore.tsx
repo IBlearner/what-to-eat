@@ -15,6 +15,9 @@ interface ImageSelectionState {
   
     isLoading: boolean;
     setIsLoading: (newLoading: boolean) => void;
+
+    isFinished: boolean;
+    setIsFinished: () => void;
 }
 
 const defaultOption: ImageInterface = {
@@ -30,7 +33,7 @@ const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
     })),
     decreasePool: (option) => {
         set((state) => ({
-            optionPool: popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, option))
+            optionPool: [...popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, option))]
         }))
     },
 
@@ -52,6 +55,11 @@ const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
     isLoading: false,
     setIsLoading: (newLoading) => set(() => ({
         isLoading: newLoading
+    })),
+
+    isFinished: false,
+    setIsFinished: () => set((state) => ({
+        isFinished: !state.isFinished
     }))
 }))
 
