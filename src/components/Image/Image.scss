@@ -7,6 +7,11 @@
         transition: opacity 1s;
     }
 
+    &.expand {
+        width: 300px;
+        transition: width 1s;
+    }
+
     > * {
         width: 100%;
         height: 100%;

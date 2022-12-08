@@ -10,14 +10,14 @@ interface ImageSelectionState {
 
     leftOption: ImageInterface;
     rightOption: ImageInterface;
-    selectLeftOption: () => void;
-    selectRightOption: () => void;
+    setLeftOption: (option: ImageInterface) => void;
+    setRightOption: (option: ImageInterface) => void;
   
     isLoading: boolean;
     setIsLoading: (newLoading: boolean) => void;
 
-    isFinished: boolean;
-    setIsFinished: () => void;
+    winningOption: ImageInterface | null;
+    setWinningOption: (option: ImageInterface) => void;
 }
 
 const defaultOption: ImageInterface = {
@@ -28,9 +28,11 @@ const defaultOption: ImageInterface = {
 
 const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
     optionPool: [],
-    initPool: (pool) => set(() => ({
-        optionPool: pool
-    })),
+    initPool: (pool) => {
+        set(() => ({
+            optionPool: pool
+        }))
+    },
     decreasePool: (option) => {
         set((state) => ({
             optionPool: [...popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, option))]
@@ -39,16 +41,14 @@ const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
 
     leftOption: defaultOption,
     rightOption: defaultOption,
-    selectLeftOption: () => {
-        set((state) => ({
-            // Can't just use the option pool as there is a chance left option === right option. Must use a new version of option pool without the right option
-            leftOption: selectRandomFromArr([...popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, state.rightOption))])
+    setLeftOption: (option) => {
+        set(() => ({
+            leftOption: option
         }))
     },
-    selectRightOption: () => {
-        set((state) => ({
-            // Can't just use the option pool as there is a chance left option === right option. Must use a new version of option pool without the left option
-            rightOption: selectRandomFromArr([...popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, state.leftOption))])
+    setRightOption: (option) => {
+        set(() => ({
+            rightOption: option
         }))
     },
 
@@ -57,9 +57,9 @@ const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
         isLoading: newLoading
     })),
 
-    isFinished: false,
-    setIsFinished: () => set((state) => ({
-        isFinished: !state.isFinished
+    winningOption: null,
+    setWinningOption: (option) => set(() => ({
+        winningOption: option
     }))
 }))
 

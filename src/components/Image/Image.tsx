@@ -10,8 +10,10 @@ export default function Image({ id, optionDetails, onImageClick }: { id: string,
     const isLoading = useImageSelectionStore(state => state.isLoading);
     const [selected, setSelected] = useState(false);
     // Set it as true on the assumption it can be found, and turn off if it can't be
-    const [imageIsFound, setImageIsFound] = useState(true);  
+    const [imageIsFound, setImageIsFound] = useState(true);
+    const winningOption = useImageSelectionStore(state => state.winningOption);
 
+    // Ensures that after isLoading is reset, this internal selected variable is also reset
     useEffect(() => {
         if (isLoading === false) setSelected(false);
     }, [isLoading])
@@ -21,15 +23,16 @@ export default function Image({ id, optionDetails, onImageClick }: { id: string,
         setImageIsFound(true);
     }, [optionDetails])
 
+    // Listens to winningOption to know if this option should have it's image expanded
     const getClassName = (): string => {
-        return `image-container ${ selected ? "fade" : "" }`;
+        return `image-container ${ isLoading && !selected ? "fade" : "" } ${winningOption?.name === optionDetails.name ? "expanded" : ""}`.trim();
     }
 
     const onImageClickChild = () => {
         // Requires an additional check here as main app is unaware of the setselected
         if (!isLoading) {
             onImageClick(id, optionDetails);
-            setSelected(true);
+            setSelected(true);   
         }
     }
 
