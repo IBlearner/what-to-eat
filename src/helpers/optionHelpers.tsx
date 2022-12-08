@@ -1,7 +1,6 @@
-import { ImageInterface } from "../interfaces/ImageInterface";
+import { FoodInterface } from "../interfaces/FoodInterface";
 
-
-export function findIndexOfImage(array: ImageInterface[], option: ImageInterface): number {
+export function findIndexOfOption(array: FoodInterface[], option: FoodInterface): number {
     // Cannot just use indexOf when using objects, will return -1 (different reference perhaps?)
 
     let index: number = -1;

@@ -1,17 +1,18 @@
 import "./Image.scss";
-import { ImageInterface } from "../../interfaces/ImageInterface";
-import useImageSelectionStore from "../../stores/ImageSelectionStore";
+import { FoodInterface } from "../../interfaces/FoodInterface";
+import useFoodSelectionStore from "../../stores/FoodSelectionStore";
+import useAppStore from "../..//stores/AppStore";
 import { useEffect, useState } from "react";
 
-export default function Image({ id, optionDetails, onImageClick }: { id: string, optionDetails: ImageInterface, onImageClick: Function }) {
+export default function Image({ id, optionDetails, onImageClick }: { id: string, optionDetails: FoodInterface, onImageClick: Function }) {
 
     // Keeps track of when the entire comparer is loading to prevent either buttons from clicking
     // Variable selected is used to track internally which image should be showing the loading transition
-    const isLoading = useImageSelectionStore(state => state.isLoading);
+    const isLoading = useAppStore(state => state.isLoading);
     const [selected, setSelected] = useState(false);
     // Set it as true on the assumption it can be found, and turn off if it can't be
     const [imageIsFound, setImageIsFound] = useState(true);
-    const winningOption = useImageSelectionStore(state => state.winningOption);
+    const winningOption = useFoodSelectionStore(state => state.winningOption);
 
     // Ensures that after isLoading is reset, this internal selected variable is also reset
     useEffect(() => {

@@ -1,0 +1,42 @@
+[
+    {
+        "name": "mexican",
+        "path": "./src/assets/mexican.jpg",
+        "alt": "mexican"
+    },
+    {
+        "name": "italian",
+        "path": "./src/assets/burger.jpg",
+        "alt": "italian"
+    },
+    {
+        "name": "thai",
+        "path": "./src/assets/nasi-lemak.jpg",
+        "alt": "thai"
+    },
+    {
+        "name": "vietnamese",
+        "path": "./src/assets/pho.jpg",
+        "alt": "vietnamese"
+    },
+    {
+        "name": "malaysian",
+        "path": "./src/assets/ribs.jpg",
+        "alt": "malaysian"
+    },
+    {
+        "name": "korean",
+        "path": "./src/assets/ribs.jpg",
+        "alt": "korean"
+    },
+    {
+        "name": "japanese",
+        "path": "./src/assets/ribs.jpg",
+        "alt": "japanese"
+    },
+    {
+        "name": "western",
+        "path": "./src/assets/ribs.jpg",
+        "alt": "western"
+    }
+]

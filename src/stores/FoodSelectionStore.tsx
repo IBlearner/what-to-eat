@@ -1,32 +1,32 @@
 import create from 'zustand';
-import { ImageInterface } from '../interfaces/ImageInterface';
+import { FoodInterface } from '../interfaces/FoodInterface';
 import { selectRandomFromArr, popIndexFromArr } from "../helpers/genericHelpers";
-import { findIndexOfImage } from "../helpers/imageHelpers";
+import { findIndexOfOption } from "../helpers/optionHelpers";
 
-interface ImageSelectionState {
-    optionPool: ImageInterface[];
-    initPool: (pool: ImageInterface[]) => void;
-    decreasePool: (option: ImageInterface) => void;
+interface FoodSelectionState {
+    optionPool: FoodInterface[];
+    initPool: (pool: FoodInterface[]) => void;
+    decreasePool: (option: FoodInterface) => void;
 
-    leftOption: ImageInterface;
-    rightOption: ImageInterface;
-    setLeftOption: (option: ImageInterface) => void;
-    setRightOption: (option: ImageInterface) => void;
+    leftOption: FoodInterface;
+    rightOption: FoodInterface;
+    setLeftOption: (option: FoodInterface) => void;
+    setRightOption: (option: FoodInterface) => void;
   
     isLoading: boolean;
     setIsLoading: (newLoading: boolean) => void;
 
-    winningOption: ImageInterface | null;
-    setWinningOption: (option: ImageInterface) => void;
+    winningOption: FoodInterface | null;
+    setWinningOption: (option: FoodInterface) => void;
 }
 
-const defaultOption: ImageInterface = {
+const defaultOption: FoodInterface = {
     name: "pizza",
     path: "./src/assets/piza.jpg",
     alt: "pizza"
 }
 
-const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
+const useFoodSelectionStore = create<FoodSelectionState>()((set) => ({
     optionPool: [],
     initPool: (pool) => {
         set(() => ({
@@ -35,7 +35,7 @@ const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
     },
     decreasePool: (option) => {
         set((state) => ({
-            optionPool: [...popIndexFromArr(state.optionPool, findIndexOfImage(state.optionPool, option))]
+            optionPool: [...popIndexFromArr(state.optionPool, findIndexOfOption(state.optionPool, option))]
         }))
     },
 
@@ -63,4 +63,4 @@ const useImageSelectionStore = create<ImageSelectionState>()((set) => ({
     }))
 }))
 
-export default useImageSelectionStore;
+export default useFoodSelectionStore;
