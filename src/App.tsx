@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.scss";
 import OptionComparer from "./components/OpenComparer/OptionComparer";
 import Toolbar from "./components/Toolbar/Toolbar";
@@ -25,19 +25,32 @@ function App() {
   const winningOption = useFoodSelectionStore(state => state.winningOption);
   const setWinningOption = useFoodSelectionStore(state => state.setWinningOption);
 
+  const mode = useAppStore(state => state.mode);
+
+  const reset = useAppStore(state => state.reset);
+  const setReset = useAppStore(state => state.setReset);
+
   useEffect(() => {
-    fetchData();
+    // fetchData();
   }, [])
 
-  const fetchData = async () => {
-    const response = await fetch("./foodData.json");
+  useEffect(() => {
+    // Fetch data when mode is updated. Check for cache in case user already did one?
+    fetchData(`./${mode}Data.json`);
+    resetApp();
+  }, [mode])
+
+  useEffect(() => {
+    resetApp();
+  }, [reset])
+
+  const fetchData = async (mode: string) => {
+    const response = await fetch(mode);
     let res: FoodInterface[] = await response.json();
 
     // Set the left and right options
-    const randomLeftOption = getRandomOptionFromPool(res);
-    const randomRightOption = getRandomOptionFromPool(res);
-    setLeftOption(randomLeftOption);
-    setRightOption(randomRightOption);
+    setLeftOption(getRandomOptionFromPool(res));
+    setRightOption(getRandomOptionFromPool(res));
 
     // Initialise the option pool with the remaining options
     initPool(res);
@@ -79,8 +92,20 @@ function App() {
     }
   }
 
+  const resetApp = () => {
+    // Unlock the option comparer
+    setIsLoading(false);
+    // Remove any winning option
+    setWinningOption(null);
+    // TODO: ideally not fetch data again but look into state and see if something already exists
+    fetchData(`./${mode}Data.json`);
+    // Ensure the reset is toggled off so it may be reset next time
+    setReset(false);
+  }
+
   return (
     <div className="App">
+      <div className={`app-banner ${mode}`.trim()}>{mode ? mode + "s" : "Select something"}</div>
       <h1 className="item-comparer-title">{!winningOption ? (leftOption.name + " vs " + rightOption.name) : `Woooo it looks like you're having ${winningOption.name}!`}</h1>
 
       {/* Disable the interactiveness when it is either loading or the user has not reached a conclusion */}
@@ -90,7 +115,7 @@ function App() {
       {
         optionPool.map(img => {
           return (
-            <li>{img.name}</li>
+            <li key={img.name}>{img.name}</li>
           )
         })
       }

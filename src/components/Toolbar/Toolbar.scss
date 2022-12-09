@@ -1,11 +1,58 @@
 .toolbar-container {
+    // display: flex;
+    // justify-content: center;
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 70px;
+    height: 0;
     width: 100%;
     text-align: center;
 
     background-color: #000;
     color: #fff;
+
+    transition: height 1.5s;
+
+    &.expanded {
+        height: 100%;
+    }
+
+    .toggle-toolbar-button, .reset-app-button {
+        position: absolute;
+        bottom: 15px;
+    }
+
+    .toggle-toolbar-button {
+        right: 5%;
+    }
+
+    .reset-app-button {
+        left: 5%;
+    }
+
+    .mode-options-container {
+        position: relative;
+        top: 50%;
+        // transform: translate(0, -50%); // not verticall centered
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 20px;
+
+        .mode-button {
+            width: 60%;
+
+            padding: 10px 0;
+            background-color: white;
+            color: #000;
+
+            &:hover {
+                cursor: pointer;
+                opacity: 40%;
+            }
+        }
+    }
 }

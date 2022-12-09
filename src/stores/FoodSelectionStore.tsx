@@ -17,7 +17,7 @@ interface FoodSelectionState {
     setIsLoading: (newLoading: boolean) => void;
 
     winningOption: FoodInterface | null;
-    setWinningOption: (option: FoodInterface) => void;
+    setWinningOption: (option: FoodInterface | null) => void;
 }
 
 const defaultOption: FoodInterface = {

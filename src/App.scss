@@ -1,5 +1,47 @@
+.App {
+  // height: 100%;
+  background-color: rgb(242, 242, 242);
+  // opacity: 50%;
+}
+
 h1 {
   text-align: center;
+}
+
+.app-banner {
+  font-size: 80px;
+  text-align: center;
+  font-weight: 900;
+  opacity: 250%;
+  // text-transform: uppercase;
+
+  &.food {
+    background: url('../src/assets/nasi-lemak.jpg');
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &.cuisine {
+    background: url('../src/assets/cuisine.jpg');
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &.dessert {
+    background: url('../src/assets/dessert.jpg');
+    background-color: black;
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .item-comparer-title {

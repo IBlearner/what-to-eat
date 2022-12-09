@@ -6,37 +6,37 @@
     },
     {
         "name": "italian",
-        "path": "./src/assets/burger.jpg",
+        "path": "./src/assets/italian.jpg",
         "alt": "italian"
     },
     {
         "name": "thai",
-        "path": "./src/assets/nasi-lemak.jpg",
+        "path": "./src/assets/thai.jpg",
         "alt": "thai"
     },
     {
         "name": "vietnamese",
-        "path": "./src/assets/pho.jpg",
+        "path": "./src/assets/vietnamese.jpg",
         "alt": "vietnamese"
     },
     {
         "name": "malaysian",
-        "path": "./src/assets/ribs.jpg",
+        "path": "./src/assets/malaysian.jpg",
         "alt": "malaysian"
     },
     {
         "name": "korean",
-        "path": "./src/assets/ribs.jpg",
+        "path": "./src/assets/kroean.jpg",
         "alt": "korean"
     },
     {
         "name": "japanese",
-        "path": "./src/assets/ribs.jpg",
+        "path": "./src/assets/japenese.jpg",
         "alt": "japanese"
     },
     {
         "name": "western",
-        "path": "./src/assets/ribs.jpg",
+        "path": "./src/assets/western.jpg",
         "alt": "western"
     }
 ]
