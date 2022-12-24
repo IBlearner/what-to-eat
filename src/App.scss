@@ -1,52 +1,59 @@
 .App {
-  // height: 100%;
+  height: 100vh;
+  width: 100vw;
   background-color: rgb(242, 242, 242);
   // opacity: 50%;
-}
 
-h1 {
-  text-align: center;
-}
+  .app-top-container {
+    height: 20vh;
+    width: 100%;
 
-.app-banner {
-  font-size: 80px;
-  text-align: center;
-  font-weight: 900;
-  opacity: 250%;
-  // text-transform: uppercase;
+    .app-banner {
+      height: 100%;
+      width: 100%;
+      font-size: 80px;
+      text-align: center;
+      // margin: auto;
+      font-weight: 900;
 
-  &.food {
-    background: url('../src/assets/nasi-lemak.jpg');
-    background-size: cover;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+      // text-transform: uppercase;
+    
+      &.food {
+        background: url('../src/assets/nasi-lemak.jpg');
+        background-size: cover;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+    
+      &.cuisine {
+        background: url('../src/assets/cuisine.jpg');
+        background-size: cover;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+    
+      &.dessert {
+        background: url('../src/assets/dessert.jpg');
+        background-color: black;
+        background-size: cover;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+    } 
   }
-
-  &.cuisine {
-    background: url('../src/assets/cuisine.jpg');
-    background-size: cover;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+  
+  .app-main-container {
+    .item-comparer-title {
+      height: 100px;
+      text-align: center;
+    }
   }
-
-  &.dessert {
-    background: url('../src/assets/dessert.jpg');
-    background-color: black;
-    background-size: cover;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
-}
-
-.item-comparer-title {
-  // position: absolute;
-  // top: 0;
 }
 
 /* #root {

@@ -4,7 +4,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 0;
+    height: 80%;
     width: 100%;
     text-align: center;
 
@@ -13,8 +13,9 @@
 
     transition: height 1.5s;
 
-    &.expanded {
-        height: 100%;
+    &.closed {
+        height: 0;
+        // transform: translateX(-80vh);
     }
 
     .toggle-toolbar-button, .reset-app-button {
@@ -31,14 +32,14 @@
     }
 
     .mode-options-container {
-        position: relative;
-        top: 50%;
+        // position: relative;
+        // top: 50%;
         // transform: translate(0, -50%); // not verticall centered
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
 
         gap: 20px;
 

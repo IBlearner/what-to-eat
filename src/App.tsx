@@ -105,21 +105,25 @@ function App() {
 
   return (
     <div className="App">
-      <div className={`app-banner ${mode}`.trim()}>{mode ? mode + "s" : "Select something"}</div>
-      <h1 className="item-comparer-title">{!winningOption ? (leftOption.name + " vs " + rightOption.name) : `Woooo it looks like you're having ${winningOption.name}!`}</h1>
+      <div className="app-top-container">
+        <div className={`app-banner ${mode}`.trim()}>{mode ? mode + "s" : "Welcome"}</div>
+      </div>
+      <div className="app-main-container">
+        <h1 className="item-comparer-title">{!winningOption ? (leftOption.name + " vs " + rightOption.name) : `Woooo it looks like you're having ${winningOption.name}!`}</h1>
 
-      {/* Disable the interactiveness when it is either loading or the user has not reached a conclusion */}
-      <OptionComparer onComparerClick={!isLoading && !winningOption ? onComparerClick : () => {}}/>
-      <Toolbar />
-      <ul>
-      {
-        optionPool.map(img => {
-          return (
-            <li key={img.name}>{img.name}</li>
-          )
-        })
-      }
-      </ul>
+        {/* Disable the interactiveness when it is either loading or the user has not reached a conclusion */}
+        <OptionComparer onComparerClick={!isLoading && !winningOption ? onComparerClick : () => {}}/>
+        <Toolbar />
+        <ul>
+        {
+          optionPool.map(img => {
+            return (
+              <li key={img.name}>{img.name}</li>
+            )
+          })
+        }
+        </ul>
+      </div>
     </div>
   )
 }
